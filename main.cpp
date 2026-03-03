@@ -1,8 +1,17 @@
 #include <iostream>
 
-// III
-// a - массив массивов, которые нужно слить в 1
-// sa - количество массивов в массиве a
-// sai - массив соотвествующих размеров массивов в a
-// с - итоговый массив, в который нужно слить все
-template < class T > T *mergeN(const T *const *a, size_t sa, const size_t *sai, T *c);
+template < class T > T *mergeN(const T *const *a, size_t sa, const size_t *sai, T *c)
+{
+  if (!a || !sai || !c)
+    return nullptr;
+  size_t c_i = 0;
+  for (size_t i = 0; i < sa; ++i)
+  {
+    if (a[i] != nullptr)
+      for (size_t j = 0, curr_size = sai[i]; j < curr_size; ++j)
+      {
+        c[c_i++] = a[i][j]; // T::operator=(T)
+      }
+  }
+  return c + c_i;
+}
