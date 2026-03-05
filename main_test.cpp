@@ -1,6 +1,6 @@
 #include "boost_test.hpp"
 
-#include "main.cpp"
+#include "main.hpp"
 
 BOOST_AUTO_TEST_SUITE(mergeN_tests)
 
