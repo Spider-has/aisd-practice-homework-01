@@ -57,4 +57,37 @@ BOOST_AUTO_TEST_CASE(test_single_array)
   BOOST_CHECK_EQUAL_COLLECTIONS(result, result + 3, expected, expected + 3);
 }
 
+
+BOOST_AUTO_TEST_CASE(test_sorted_merge_basic) {
+    int row1[] = {1, 5, 10};
+    int row2[] = {2, 3, 12};
+    int row3[] = {0, 7, 8};
+
+    const int* a[] = {row1, row2, row3};
+    size_t sa = 3;
+    size_t sai[] = {3, 3, 3};
+
+    int result[9];
+    mergeN(a, sa, sai, result);
+
+    int expected[] = {0, 1, 2, 3, 5, 7, 8, 10, 12};
+    BOOST_CHECK_EQUAL_COLLECTIONS(result, result + 9, expected, expected + 9);
+}
+
+BOOST_AUTO_TEST_CASE(test_sorted_merge_duplicates) {
+    int row1[] = {1, 2, 2};
+    int row2[] = {2, 5};
+    int row3[] = {1, 1, 6};
+
+    const int* a[] = {row1, row2, row3};
+    size_t sa = 3;
+    size_t sai[] = {3, 2, 3};
+
+    int result[8];
+    mergeN(a, sa, sai, result);
+
+    int expected[] = {1, 1, 1, 2, 2, 2, 5, 6};
+    BOOST_CHECK_EQUAL_COLLECTIONS(result, result + 8, expected, expected + 8);
+}
+
 BOOST_AUTO_TEST_SUITE_END()

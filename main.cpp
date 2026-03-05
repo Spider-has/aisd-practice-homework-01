@@ -28,6 +28,7 @@ template < class T > T *mergeN(const T *const *a, size_t sa, const size_t *sai, 
   if (!a || !sai || !c)
     return nullptr;
   size_t c_i = 0;
+  size_t total_s = 0;
   for (size_t i = 0; i < sa; ++i)
   {
     if (a[i] != nullptr)
